@@ -1,0 +1,139 @@
+.forecast {
+    &__daily {
+        position: relative;
+        display: none;
+        justify-content: space-between;
+        background: #fff;
+        height: 100%;
+        padding: 20px 40px;
+        border-radius: 50px;
+
+        &__prev,
+        &__next {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 30px;
+            opacity: 0.4;
+            height: 44px;
+            border: none;
+            background: none;
+
+            span {
+                font-size: 40px;
+            }
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        &__prev {
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%) rotate(180deg);
+
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+
+        &__next {
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+
+        &__item {
+            position: relative;
+            border-right: 1px solid black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 10px;
+
+            &:last-child {
+                border-right: none;
+            }
+
+            &:hover {
+                background: rgba(0, 0, 0, 0.04);
+            }
+        }
+
+        &__icon{
+            position: relative;
+        }
+
+        &__day {
+            color: #000;
+            font-size: 19px;
+        }
+
+        &__date {
+            font-size: 15px;
+            opacity: 0.7;
+        }
+
+        &__temp {
+            font-size: 20px;
+            color: red;
+
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            font-size: 16px;
+            font-weight: bold;
+
+            &_day,
+            &_night {
+                padding: 5px;
+                border-radius: 50px;
+
+                &:hover {
+                    cursor: default;
+                    color: #000!important;
+                    border-bottom: 2px solid #000!important;
+                    background: #fff;
+                }
+            }
+
+            &_day {
+                background: rgba(209, 226, 49, 0.2);
+            }
+
+            &_night {
+                background: rgba(96, 110, 140, 0.2);
+            }
+        }
+
+        &__wind {
+            background: rgba(24, 119, 255, 0.4);
+            border-radius: 50px;
+            padding: 10px;
+
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        &__pressure {
+            background: rgba(24, 119, 255, 0.4);
+            border-radius: 50px;
+            padding: 10px;
+
+            margin-top: 15px;
+            text-align: center;
+            font-size: 15px;
+            span {
+                font-size: 10px;
+            }
+        }
+    }
+}

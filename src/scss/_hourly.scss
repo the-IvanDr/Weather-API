@@ -1,0 +1,108 @@
+.forecast{
+    &__hourly{
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        background: #fff;
+        height: 100%;
+        padding: 20px 40px;
+        border-radius: 50px;
+
+        .forecast__hourly__icon{
+            position: relative;
+        }
+
+        &__prev, &__next{
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 30px;
+            opacity: .4;
+            height: 44px;
+            border: none;
+            background: none;
+            
+            span{
+                font-size: 40px;
+            }
+
+            &:focus{
+                outline: none;
+            }
+        }
+
+        &__prev{
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%) rotate(180deg);
+
+            &:hover{
+                opacity: .8;
+            }
+        }
+
+        &__next{
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            &:hover{
+                opacity: .8;
+            }
+        }
+
+        &__item{
+            border-right: 1px solid black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 10px;
+
+            &:last-child{
+                border-right: none;
+            }
+
+            &:hover{
+                background: rgba(0, 0, 0, .04);
+            }
+        }
+
+        &__time{
+            display: flex;
+            font-size: 15px;
+            span{
+                font-size: 12px;
+            }
+        }
+
+        &__temp{
+            font-size: 20px;
+            color: red;
+        }
+
+        &__wind{
+            background: rgba(24, 119, 255, .4);
+            border-radius: 50px;
+            padding: 10px;
+
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 15px;
+        }
+
+        &__pressure{
+            background: rgba(24, 119, 255, .4);
+            border-radius: 50px;
+            padding: 10px;
+
+            margin-top: 15px;
+            text-align: center;
+            font-size: 15px;
+            span{
+                font-size: 10px;
+            }
+        }
+    }
+}

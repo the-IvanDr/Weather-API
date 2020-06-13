@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Погода</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="header">
+            <form action="#" class="search">
+                <input type="text" class="search__text-input" placeholder="Ваш город...">
+                <button class="search__button">
+                    <span class="material-icons">
+                        search
+                    </span>
+                </button>
+            </form>
+            <div class="current-city">
+                <div class="current-city__title">--</div>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button class="tabs__item tabs__item_active">На 48 часов</button>
+            <button class="tabs__item">На неделю</button>
+        </div>
+
+        <div class="weather-box">
+            <div class="right-now">                                                                                                                 
+                <div class="right-now__date">Пн, 8 июня, 19:52</div>
+                <div class="right-now__title">
+                    <div class="right-now__temp">+24 °С</div>
+                    <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="Ясно" class="right-now__icon">
+                </div>
+                <div class="right-now__descr">Ясно</div>
+
+                <div class="right-now__other">
+                    <div class="right-now__wind right-now__other__item">
+                        <span class="item-name">Ветер:</span>
+                        <div class="right-now__other__data">
+                            <span class="material-icons">
+                                arrow_right_alt
+                            </span>
+                            <span class="data">2.2 м/с</span>
+                        </div>
+                    </div>
+
+                    <div class="right-now__pressure right-now__other__item">
+                        <span class="item-name">Давление:</span>
+                        <div class="right-now__other__data">
+                            <span class="data">753 мм.рт.ст</span>
+                        </div>
+                    </div>
+
+                    <div class="right-now__humidity right-now__other__item">
+                        <span class="item-name">Влажность:</span>
+                        <div class="right-now__other__data">
+                            <span class="data">36%</span>
+                        </div>
+                    </div>
+
+                    <div class="right-now__sunrise right-now__other__item">
+                        <span class="item-name">Восход:</span>
+                        <div class="right-now__other__data">
+                            <span class="data">04:26</span>
+                        </div>
+                    </div>
+
+                    <div class="right-now__sunset right-now__other__item">
+                        <span class="item-name">Заход:</span>
+                        <div class="right-now__other__data">
+                            <span class="data">20:30</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="forecast">
+                <div class="forecast__hourly">
+                    <button class="forecast__hourly__prev">
+                        <span class="material-icons">
+                            arrow_forward_ios
+                        </span>
+                    </button>
+                    <button class="forecast__hourly__next">
+                        <span class="material-icons">
+                            arrow_forward_ios
+                        </span>
+                    </button>
+
+                    <div class="forecast__hourly__item">
+                        <div class="forecast__hourly__time">12<span>00</span></div>
+                        <div class="forecast__hourly__icon">
+                            <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="icon">
+                        </div>
+                        <div class="forecast__hourly__temp">+29 °С</div>
+                        <div class="forecast__hourly__wind">
+                            <span class="material-icons arrow">
+                                arrow_right_alt
+                            </span>
+                            <span class="data">10 м/с</span>
+                        </div>
+                        <div class="forecast__hourly__pressure">
+                            752 <br> <span>мм.рт.ст</span>
+                        </div>
+                    </div>
+
+                    <div class="forecast__hourly__item">
+                        <div class="forecast__hourly__time">12<span>00</span></div>
+                        <div class="forecast__hourly__icon">
+                            <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="icon">
+                        </div>
+                        <div class="forecast__hourly__temp">+29 °С</div>
+                        <div class="forecast__hourly__wind">
+                            <span class="material-icons arrow">
+                                arrow_right_alt
+                            </span>
+                            <span class="data">10 м/с</span>
+                        </div>
+                        <div class="forecast__hourly__pressure">
+                            752 <br> <span>мм.рт.ст</span>
+                        </div>
+                    </div>
+
+                    <div class="forecast__hourly__item">
+                        <div class="forecast__hourly__time">12<span>00</span></div>
+                        <div class="forecast__hourly__icon">
+                            <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="icon">
+                        </div>
+                        <div class="forecast__hourly__temp">+29 °С</div>
+                        <div class="forecast__hourly__wind">
+                            <span class="material-icons arrow">
+                                arrow_right_alt
+                            </span>
+                            <span class="data">10 м/с</span>
+                        </div>
+                        <div class="forecast__hourly__pressure">
+                            752 <br> <span>мм.рт.ст</span>
+                        </div>
+                    </div>
+
+                    <div class="forecast__hourly__item">
+                        <div class="forecast__hourly__time">12<span>00</span></div>
+                        <div class="forecast__hourly__icon">
+                            <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="icon">
+                        </div>
+                        <div class="forecast__hourly__temp">+29 °С</div>
+                        <div class="forecast__hourly__wind">
+                            <span class="material-icons arrow">
+                                arrow_right_alt
+                            </span>
+                            <span class="data">10 м/с</span>
+                        </div>
+                        <div class="forecast__hourly__pressure">
+                            752 <br> <span>мм.рт.ст</span>
+                        </div>
+                    </div>
+
+                    <div class="forecast__hourly__item">
+                        <div class="forecast__hourly__time">12<span>00</span></div>
+                        <div class="forecast__hourly__icon">
+                            <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="icon">
+                        </div>
+                        <div class="forecast__hourly__temp">+29 °С</div>
+                        <div class="forecast__hourly__wind">
+                            <span class="material-icons arrow">
+                                arrow_right_alt
+                            </span>
+                            <span class="data">10 м/с</span>
+                        </div>
+                        <div class="forecast__hourly__pressure">
+                            752 <br> <span>мм.рт.ст</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="forecast__daily">
+                    <button class="forecast__daily__prev">
+                        <span class="material-icons">
+                            arrow_forward_ios
+                        </span>
+                    </button>
+                    <button class="forecast__daily__next">
+                        <span class="material-icons">
+                            arrow_forward_ios
+                        </span>
+                    </button>
+
+                    <div class="forecast__daily__item">
+                        <div class="forecast__daily__day">Пн</div>
+                        <div class="forecast__daily__date">9 июня<div class=""></div></div>
+                        <div class="forecast__daily__icon">
+                            <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="icon">
+                        </div>
+                        <div class="forecast__daily__temp">
+                            <div class="forecast__daily__temp_day">
+                                +30 °С
+                            </div>
+                            <div class="forecast__daily__temp_night">
+                                +19 °С
+                            </div>
+                        </div>
+                        <div class="forecast__daily__wind">
+                            <span class="material-icons arrow">
+                                arrow_right_alt
+                            </span>
+                            <span class="data">10 м/с</span>
+                        </div>
+
+                        <div class="forecast__daily__pressure">
+                            752 <br> <span>мм.рт.ст</span>
+                        </div>
+                    </div>
+
+                    <div class="forecast__daily__item">
+                        <div class="forecast__daily__day">Пн</div>
+                        <div class="forecast__daily__date">9 июня<div class=""></div></div>
+                        <div class="forecast__daily__icon">
+                            <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="icon">
+                        </div>
+                        <div class="forecast__daily__temp">
+                            <div class="forecast__daily__temp_day">
+                                +30 °С
+                            </div>
+                            <div class="forecast__daily__temp_night">
+                                +19 °С
+                            </div>
+                        </div>
+                        <div class="forecast__daily__wind">
+                            <span class="material-icons arrow">
+                                arrow_right_alt
+                            </span>
+                            <span class="data">10 м/с</span>
+                        </div>
+
+                        <div class="forecast__daily__pressure">
+                            752 <br> <span>мм.рт.ст</span>
+                        </div>
+                    </div>
+
+                    <div class="forecast__daily__item">
+                        <div class="forecast__daily__day">Пн</div>
+                        <div class="forecast__daily__date">9 июня<div class=""></div></div>
+                        <div class="forecast__daily__icon">
+                            <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="icon">
+                        </div>
+                        <div class="forecast__daily__temp">
+                            <div class="forecast__daily__temp_day">
+                                +30 °С
+                            </div>
+                            <div class="forecast__daily__temp_night">
+                                +19 °С
+                            </div>
+                        </div>
+                        <div class="forecast__daily__wind">
+                            <span class="material-icons arrow">
+                                arrow_right_alt
+                            </span>
+                            <span class="data">10 м/с</span>
+                        </div>
+
+                        <div class="forecast__daily__pressure">
+                            752 <br> <span>мм.рт.ст</span>
+                        </div>
+                    </div>
+
+                    <div class="forecast__daily__item">
+                        <div class="forecast__daily__day">Пн</div>
+                        <div class="forecast__daily__date">9 июня<div class=""></div></div>
+                        <div class="forecast__daily__icon">
+                            <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="icon">
+                        </div>
+                        <div class="forecast__daily__temp">
+                            <div class="forecast__daily__temp_day">
+                                +30 °С
+                            </div>
+                            <div class="forecast__daily__temp_night">
+                                +19 °С
+                            </div>
+                        </div>
+                        <div class="forecast__daily__wind">
+                            <span class="material-icons arrow">
+                                arrow_right_alt
+                            </span>
+                            <span class="data">10 м/с</span>
+                        </div>
+
+                        <div class="forecast__daily__pressure">
+                            752 <br> <span>мм.рт.ст</span>
+                        </div>
+                    </div>
+
+                    <div class="forecast__daily__item">
+                        <div class="forecast__daily__day">Пн</div>
+                        <div class="forecast__daily__date">9 июня<div class=""></div></div>
+                        <div class="forecast__daily__icon">
+                            <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="icon">
+                        </div>
+                        <div class="forecast__daily__temp">
+                            <div class="forecast__daily__temp_day">
+                                +30 °С
+                            </div>
+                            <div class="forecast__daily__temp_night">
+                                +19 °С
+                            </div>
+                        </div>
+                        <div class="forecast__daily__wind">
+                            <span class="material-icons arrow">
+                                arrow_right_alt
+                            </span>
+                            <span class="data">10 м/с</span>
+                        </div>
+
+                        <div class="forecast__daily__pressure">
+                            752 <br> <span>мм.рт.ст</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</body>
+
+</html>

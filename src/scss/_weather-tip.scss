@@ -1,0 +1,15 @@
+.weather-tip{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #9DB1CC;
+    padding: 5px;
+    width: 100px;
+    min-height: 50px;
+    font-size: 12px;
+    text-align: center;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

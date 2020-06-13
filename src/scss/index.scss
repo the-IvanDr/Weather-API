@@ -1,0 +1,20 @@
+@import "~normalize.css";
+@import "header.scss";
+@import "tabs.scss";
+@import "weather-box.scss";
+@import "right-now.scss";
+@import "forecast.scss";
+@import "hourly.scss";
+@import "daily.scss";
+@import "weather-tip.scss";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body{
+    padding: 10px;
+}

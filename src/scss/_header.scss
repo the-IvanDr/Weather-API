@@ -1,0 +1,79 @@
+.header {
+    position: relative;
+    height: 100px;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    padding-left: 50px;
+    padding-right: 50px;
+    background: #fff;
+
+    .current-city{
+        display: flex;
+    }
+
+    .search {
+        
+        &__text-input{
+            background: none;
+            border: none;
+            border-bottom: 1px solid black;
+            padding: 2px;
+            padding-left: 10px;
+            opacity: .9;
+            font-size: 20px;
+
+            &:focus{
+                outline: none;
+            }
+        }
+
+        &__button{
+            display: block;
+            float: right;
+            background: none;
+            border: none;
+            opacity: .5;            
+            &:hover{
+                opacity: 1;
+            }
+
+            span{
+                font-size: 30px;
+            }
+        }
+    }
+
+    .current-city{
+        width: 120px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 25px;
+        margin-left: 10px;
+
+        &__title{
+            border-left: 1px solid #000;
+            padding-left: 10px;
+            align-self: center;
+            color: #000;
+        }
+    }
+
+    &__warn{
+        font-size: 12px;
+        background: rgba(24, 119, 255, .9);
+        color: #fff;
+        border-radius: 50px;
+        width: 220px;
+        min-height: 50px;
+        display: flex;
+        align-items: center;
+        padding: 5px;
+        padding-left: 15px;
+
+        position: absolute;
+        bottom: 12px;
+
+        transition: opacity .5s;
+    }
+}
