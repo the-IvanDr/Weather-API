@@ -48,6 +48,20 @@
             }
         }
 
+        &__slider{
+            min-width: 121*5+-1px;
+            min-height: 330px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        &__items {
+            position: absolute;
+            display: flex;     
+            height: 100%;
+            left: 0px;       
+        }
+
         &__item {
             position: relative;
             border-right: 1px solid black;
@@ -80,20 +94,21 @@
         }
 
         &__temp {
-            font-size: 20px;
             color: red;
-
+            
             width: 100%;
             display: flex;
             justify-content: space-between;
-            font-size: 16px;
+
+            font-size: 13px;
             font-weight: bold;
+            height: 25px;
 
             &_day,
             &_night {
                 padding: 5px;
                 border-radius: 50px;
-
+                
                 &:hover {
                     cursor: default;
                     color: #000!important;

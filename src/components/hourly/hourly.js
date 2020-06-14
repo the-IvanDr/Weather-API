@@ -1,57 +1,72 @@
+import { createHourlyButtons, createHourlyItem } from "@/components/hourly/components.js";
 import { getTime, setWeatherIcon, setWeatherTemp, setWeatherWind, setWeatherPressure } from "@/functions";
 
-const ITEMS = 5;
-const DIFF = 3;
-const MAX = 48-DIFF*ITEMS;
+const ITEMS = 48;
 
 class Hourly {
     constructor() {
         this.container = document.querySelector(".forecast__hourly");
-        this.items = document.querySelectorAll(".forecast__hourly__item");
+        this.items = document.querySelector(".forecast__hourly__items");
 
-        this.counter = DIFF;
+        this.counter = 0;
+        this.btnPrev;
+        this.btnNext;
+
+        this.appendElements();
         this.btnPrev = document.querySelector(".forecast__hourly__prev");
         this.btnNext = document.querySelector(".forecast__hourly__next");
+        this.btnPrev.style.display = "none";
+
+        this.next = this.next.bind(this);
+        this.prev = this.prev.bind(this);
     }
 
     init(data) {
-        this.counter = DIFF;
+        this.counter = 0;       
+
         this.setData(data);
 
         this.btnNext.onclick = null;
-        this.btnNext.onclick = () => this.next(data);
-
-        this.btnPrev.style.display = "none";
+        this.btnNext.onclick = this.next;
+        
         this.btnPrev.onclick = null;
-        this.btnPrev.onclick = () => this.prev(data);
+        this.btnPrev.onclick = this.prev;
+    }
+
+    appendElements() {
+        this.container.insertAdjacentHTML("afterbegin", createHourlyButtons());
+
+        for (let i = 0; i < ITEMS; i++) {
+            this.items.insertAdjacentHTML("beforeend", createHourlyItem());
+        }
     }
 
     setData(data) {
         let counter = this.counter;
-        this.items.forEach((item, index) => {
-            this.setItem(item, data[counter]);
-            counter += DIFF;
+        const items = this.items.querySelectorAll(".forecast__hourly__item");
+        items.forEach(item => {
+            this.setItem(item, data[counter++]);
         });
     }
 
-    setItem(item, weatherInfo) {
+    setItem(item, data) {
         const time = item.querySelector(".forecast__hourly__time");
-        const iconBlock = item.querySelector(".forecast__hourly__icon");
         const icon = item.querySelector(".forecast__hourly__icon img");
+        const iconBlock = item.querySelector(".forecast__hourly__icon");
         const temp = item.querySelector(".forecast__hourly__temp");
         const wind = item.querySelector(".forecast__hourly__wind .data");
         const windArrow = item.querySelector(".forecast__hourly__wind .arrow");
         const pressure = item.querySelector(".forecast__hourly__pressure");
 
-        const timeValue = getTime(weatherInfo.dt, true).split(":");
-        time.innerHTML = `${timeValue[0]}<span>${timeValue[1]}</span>`;
+        const timeValue = getTime(data.dt).split(":");
+        time.innerHTML = `${timeValue[0]}<span>00</span>`;
 
-        setWeatherIcon(icon, weatherInfo.weather[0].icon);
-        setWeatherTemp(temp, weatherInfo.temp);
-        setWeatherWind(wind, windArrow, weatherInfo.wind_deg, weatherInfo.wind_speed);
-        setWeatherPressure(pressure, weatherInfo.pressure, true);
+        setWeatherIcon(icon, data.weather[0].icon);
+        setWeatherTemp(temp, data.temp);
+        setWeatherWind(wind, windArrow, data.wind_deg, data.wind_speed);
+        setWeatherPressure(pressure, data.pressure);
 
-        this.addEventListenerHover(iconBlock, weatherInfo.weather[0].description);
+        this.addEventListenerHover(iconBlock, data.weather[0].description);
     }
 
     addEventListenerHover(item, descr) {
@@ -74,28 +89,38 @@ class Hourly {
         });
     }
 
-    next(data) {
-        this.counter += DIFF;
-        if (this.counter <= MAX) {
-            this.setData(data);
-            this.btnPrev.style.display = "block";
+    next() {
+        const item = this.items.querySelector(".forecast__hourly__item");
+        const itemInfo = item.getBoundingClientRect();
+        const itemWidth = itemInfo.width;
 
-            if (this.counter + DIFF > MAX) {
-                this.btnNext.style.display = "none";
-            }
+        const items = this.items;
+        const currentLeft = window.getComputedStyle(items)["left"];
+        const currentRight = window.getComputedStyle(items)["right"];
+
+        items.style.left = parseInt(currentLeft) - itemWidth + "px";
+
+        this.btnPrev.style.display = "block";
+        if (parseInt(currentRight) >= 0 - itemWidth) {
+            this.btnNext.style.display = "none";
         }
     }
 
-    prev(data) {
-        if (this.counter > (1 + DIFF)) {
-            this.counter -= DIFF;
-            this.setData(data);
-            this.btnNext.style.display = "block";
+    prev(){        
+        const item = this.items.querySelector(".forecast__hourly__item");
+        const itemInfo = item.getBoundingClientRect();
+        const itemWidth = itemInfo.width;
 
-            if ((this.counter - DIFF) < (1+DIFF)){
-                this.btnPrev.style.display = "none";
-            }
-        } 
+        const items = this.items;
+        const currentLeft = window.getComputedStyle(items)["left"];
+        const currentRight = window.getComputedStyle(items)["right"];
+
+        items.style.left = parseInt(currentLeft) + itemWidth + "px";
+        
+        this.btnNext.style.display = "block";
+        if (parseInt(currentLeft) >= 0 - itemWidth){
+            this.btnPrev.style.display = "none";
+        }
     }
 }
 

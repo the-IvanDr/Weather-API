@@ -1,5 +1,5 @@
-.forecast{
-    &__hourly{
+.forecast {
+    &__hourly {
         position: relative;
         display: flex;
         justify-content: space-between;
@@ -8,80 +8,95 @@
         padding: 20px 40px;
         border-radius: 50px;
 
-        .forecast__hourly__icon{
+        .forecast__hourly__icon {
             position: relative;
         }
 
-        &__prev, &__next{
+        &__prev,
+        &__next {
             position: absolute;
             display: flex;
             justify-content: center;
             align-items: center;
             width: 30px;
-            opacity: .4;
+            opacity: 0.4;
             height: 44px;
             border: none;
             background: none;
-            
-            span{
+
+            span {
                 font-size: 40px;
             }
 
-            &:focus{
+            &:focus {
                 outline: none;
             }
         }
 
-        &__prev{
+        &__prev {
             left: 0;
             top: 50%;
             transform: translateY(-50%) rotate(180deg);
 
-            &:hover{
-                opacity: .8;
+            &:hover {
+                opacity: 0.8;
             }
         }
 
-        &__next{
+        &__next {
             right: 0;
             top: 50%;
             transform: translateY(-50%);
-            &:hover{
-                opacity: .8;
+            &:hover {
+                opacity: 0.8;
             }
         }
 
-        &__item{
+        &__slider{
+            min-width: 121*5+-1px;
+            min-height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        &__items {
+            position: absolute;
+            display: flex;     
+            left: 0px;       
+            height: 100%;
+        }
+
+        &__item {
             border-right: 1px solid black;
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 0 10px;
 
-            &:last-child{
+            &:last-child {
                 border-right: none;
             }
 
-            &:hover{
-                background: rgba(0, 0, 0, .04);
+            &:hover {
+                background: rgba(0, 0, 0, 0.04);
             }
         }
 
-        &__time{
+        &__time {
             display: flex;
             font-size: 15px;
-            span{
+            span {
                 font-size: 12px;
             }
         }
 
-        &__temp{
+        &__temp {
             font-size: 20px;
             color: red;
         }
 
-        &__wind{
-            background: rgba(24, 119, 255, .4);
+        &__wind {
+            background: rgba(24, 119, 255, 0.4);
             border-radius: 50px;
             padding: 10px;
 
@@ -92,15 +107,15 @@
             font-size: 15px;
         }
 
-        &__pressure{
-            background: rgba(24, 119, 255, .4);
+        &__pressure {
+            background: rgba(24, 119, 255, 0.4);
             border-radius: 50px;
             padding: 10px;
 
             margin-top: 15px;
             text-align: center;
             font-size: 15px;
-            span{
+            span {
                 font-size: 10px;
             }
         }
