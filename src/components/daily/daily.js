@@ -1,8 +1,8 @@
 import { getDay, getDate, getMonth, setWeatherIcon, setWeatherWind, setWeatherPressure, setWeatherTemp } from '@/functions';
 import { createDailyButtons, createDailyItem } from '@/components/daily/components';
 
-const ITEMS = 8;
-const FIRST_DAY = 0;
+const ITEMS = 8; // Кол-во элементов в слайдере
+const FIRST_DAY = 0; // Первый отображаемый день (0 - текущий день)
 
 class Daily {
     constructor() {
@@ -13,28 +13,28 @@ class Daily {
         this.btnNext;
         this.btnPrev;
 
-        this.appendElements();
-        this.btnPrev = document.querySelector(".forecast__daily__prev");
-        this.btnNext = document.querySelector(".forecast__daily__next");
-        this.btnPrev.style.display = "none";
+        this._appendElements(); // Добавление элементов в this.container (две кнопки + item-ы)
+        this.btnPrev = document.querySelector(".forecast__daily__prev"); // Теперь можно найти кнопки
+        this.btnNext = document.querySelector(".forecast__daily__next"); // _________________________
+        this.btnPrev.style.display = "none"; // Изначально кнопка "листать влево" не отображается
 
-        this.next = this.next.bind(this);
-        this.prev = this.prev.bind(this);
+        this._next = this._next.bind(this);
+        this._prev = this._prev.bind(this);
     }
 
     init(data) {
         this.counter = FIRST_DAY;        
 
-        this.setData(data);
+        this._setData(data);
 
         this.btnNext.onclick = null;
-        this.btnNext.onclick = this.next;
+        this.btnNext.onclick = this._next;
         
         this.btnPrev.onclick = null;
-        this.btnPrev.onclick = this.prev;
+        this.btnPrev.onclick = this._prev;
     }
 
-    appendElements() {
+    _appendElements() {
         this.container.insertAdjacentHTML("afterbegin", createDailyButtons());
 
         for (let i = 0; i < ITEMS; i++) {
@@ -42,15 +42,15 @@ class Daily {
         }
     }
 
-    setData(data) {
+    _setData(data) {
         let counter = this.counter;
         const items = this.items.querySelectorAll(".forecast__daily__item");
         items.forEach(item => {
-            this.setItem(item, data[counter++]);
+            this._setItem(item, data[counter++]);
         });
     }
 
-    setItem(item, data) {
+    _setItem(item, data) {
         const day = item.querySelector(".forecast__daily__day");
         const date = item.querySelector(".forecast__daily__date");
         const icon = item.querySelector(".forecast__daily__icon img");
@@ -70,10 +70,10 @@ class Daily {
         setWeatherWind(wind, windArrow, data.wind_deg, data.wind_speed);
         setWeatherPressure(pressure, data.pressure, true);
 
-        this.addEventListenerHover(iconBlock, data.weather[0].description);
+        this._addEventListenerHover(iconBlock, data.weather[0].description);
     } 
 
-    next() {
+    _next() {
         const item = this.items.querySelector(".forecast__daily__item");
         const itemInfo = item.getBoundingClientRect();
         const itemWidth = itemInfo.width;
@@ -90,7 +90,7 @@ class Daily {
         }
     }
 
-    prev() {
+    _prev() {
         const item = this.items.querySelector(".forecast__daily__item");
         const itemInfo = item.getBoundingClientRect();
         const itemWidth = itemInfo.width;
@@ -107,38 +107,7 @@ class Daily {
         }
     }
 
-    // setData(data) {
-    //     let counter = this.counter;
-    //     this.items.forEach((item, index) => {
-    //         this.setItem(item, data[counter]);
-    //         counter++;
-    //     });
-    // }
-
-    // setItem(item, weatherInfo) {
-    //     const day = item.querySelector(".forecast__daily__day");
-    //     const date = item.querySelector(".forecast__daily__date");
-    //     const icon = item.querySelector(".forecast__daily__icon img");
-    //     const iconBlock = item.querySelector(".forecast__daily__icon");
-    //     const tempDay = item.querySelector(".forecast__daily__temp_day");
-    //     const tempNight = item.querySelector(".forecast__daily__temp_night");
-    //     const wind = item.querySelector(".forecast__daily__wind .data");
-    //     const windArrow = item.querySelector(".forecast__daily__wind .arrow");
-    //     const pressure = item.querySelector(".forecast__daily__pressure");
-
-    //     day.textContent = getDay(weatherInfo.dt);
-    //     date.textContent = `${getDate(weatherInfo.dt)} ${getMonth(weatherInfo.dt)}`;
-
-    //     setWeatherIcon(icon, weatherInfo.weather[0].icon);
-    //     setWeatherTemp(tempDay, weatherInfo.temp.day);
-    //     setWeatherTemp(tempNight, weatherInfo.temp.night);
-    //     setWeatherWind(wind, windArrow, weatherInfo.wind_deg, weatherInfo.wind_speed);
-    //     setWeatherPressure(pressure, weatherInfo.pressure, true);
-
-    //     this.addEventListenerHover(iconBlock, weatherInfo.weather[0].description);
-    // }
-
-    addEventListenerHover(item, descr) {
+    _addEventListenerHover(item, descr) {
         let tip;
         descr = descr.split("")[0].toUpperCase().concat(descr.slice(1));
 

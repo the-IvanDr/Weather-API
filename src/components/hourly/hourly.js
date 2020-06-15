@@ -1,7 +1,7 @@
 import { createHourlyButtons, createHourlyItem } from "@/components/hourly/components.js";
 import { getTime, setWeatherIcon, setWeatherTemp, setWeatherWind, setWeatherPressure } from "@/functions";
 
-const ITEMS = 48;
+const ITEMS = 48; // Количество item-ов (часов для прогноза)
 
 class Hourly {
     constructor() {
@@ -12,28 +12,28 @@ class Hourly {
         this.btnPrev;
         this.btnNext;
 
-        this.appendElements();
-        this.btnPrev = document.querySelector(".forecast__hourly__prev");
-        this.btnNext = document.querySelector(".forecast__hourly__next");
-        this.btnPrev.style.display = "none";
+        this._appendElements(); // Добавление элементов в this.container (кнопки и item-ы)
+        this.btnPrev = document.querySelector(".forecast__hourly__prev"); // Теперь можно найти эти кнопки
+        this.btnNext = document.querySelector(".forecast__hourly__next"); // _____________________________
+        this.btnPrev.style.display = "none"; // Изначально кнопка "листать влево" не отображается
 
-        this.next = this.next.bind(this);
-        this.prev = this.prev.bind(this);
+        this._next= this._next.bind(this);
+        this._prev = this._prev.bind(this);
     }
 
     init(data) {
         this.counter = 0;       
 
-        this.setData(data);
+        this._setData(data); // Вставить данные в элементы html (температура, иконка погоды, дата и т.д)
 
         this.btnNext.onclick = null;
-        this.btnNext.onclick = this.next;
+        this.btnNext.onclick = this._next;
         
         this.btnPrev.onclick = null;
-        this.btnPrev.onclick = this.prev;
+        this.btnPrev.onclick = this._prev;
     }
 
-    appendElements() {
+    _appendElements() {
         this.container.insertAdjacentHTML("afterbegin", createHourlyButtons());
 
         for (let i = 0; i < ITEMS; i++) {
@@ -41,15 +41,16 @@ class Hourly {
         }
     }
 
-    setData(data) {
+    _setData(data) {
+        // Добавление данных в каждый item в процессе итерации по массиву этих элементов (item-ов)
         let counter = this.counter;
         const items = this.items.querySelectorAll(".forecast__hourly__item");
         items.forEach(item => {
-            this.setItem(item, data[counter++]);
+            this._setItem(item, data[counter++]);
         });
     }
 
-    setItem(item, data) {
+    _setItem(item, data) {
         const time = item.querySelector(".forecast__hourly__time");
         const icon = item.querySelector(".forecast__hourly__icon img");
         const iconBlock = item.querySelector(".forecast__hourly__icon");
@@ -66,10 +67,11 @@ class Hourly {
         setWeatherWind(wind, windArrow, data.wind_deg, data.wind_speed);
         setWeatherPressure(pressure, data.pressure);
 
-        this.addEventListenerHover(iconBlock, data.weather[0].description);
+        this._addEventListenerHover(iconBlock, data.weather[0].description);
     }
 
-    addEventListenerHover(item, descr) {
+    // Отображение описания погоды (Если иконка не понятна) по нажатию на иконку погоды
+    _addEventListenerHover(item, descr) {
         let tip;
         descr = descr.split("")[0].toUpperCase().concat(descr.slice(1));
 
@@ -89,7 +91,7 @@ class Hourly {
         });
     }
 
-    next() {
+    _next() {
         const item = this.items.querySelector(".forecast__hourly__item");
         const itemInfo = item.getBoundingClientRect();
         const itemWidth = itemInfo.width;
@@ -106,7 +108,7 @@ class Hourly {
         }
     }
 
-    prev(){        
+    _prev(){        
         const item = this.items.querySelector(".forecast__hourly__item");
         const itemInfo = item.getBoundingClientRect();
         const itemWidth = itemInfo.width;
